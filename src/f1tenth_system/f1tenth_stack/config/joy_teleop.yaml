@@ -1,0 +1,53 @@
+joy:
+  ros__parameters:
+    # device_name: /dev/input/js0
+    device_id: 0
+    deadzone: 0.01
+    autorepeat_rate: 20.0
+    coalesce_interval: 0.01
+
+joy_teleop:
+  ros__parameters:
+    # default:
+    #   type: topic
+    #   is_default: true
+    #   interface_type: ackermann_msgs/msg/AckermannDriveStamped
+    #   topic_name: teleop
+    #   axis_mappings:
+    #     drive-speed:
+    #       axis: 1
+    #       scale: 0.0
+    #       offset: 0.0
+    #     drive-steering_angle:
+    #       axis: 2
+    #       scale: 0.0
+    #       offset: 0.0
+    # 현재 위 주석처리한 스크립트에서 deadman_buttons 인자가 없어서 
+    # joy_teleop 노드에 에러가 발생하는 이슈가 있다.
+    # deadman_buttons란, 그곳에 할당된 버튼이 눌려야 거기에 해당하는 동작을 수행하도록 하는
+    # 파라미터이다.
+    # 우선 주석처리해놓았으므로, 아무 버튼도 누르지 않을 때 움직이지 않는지 실험을 통해 확인해보아야한다.
+
+    human_control:
+      type: topic
+      interface_type: ackermann_msgs/msg/AckermannDriveStamped
+      topic_name: teleop
+      deadman_buttons: [4]
+      axis_mappings:
+        drive-speed:
+          axis: 1
+          scale: 1
+          offset: 0.0
+        drive-steering_angle:
+          axis: 3
+          scale: 0.3
+          offset: 0.0
+
+    autonomous_control:
+      type: topic
+      interface_type: std_msgs/msg/Int8
+      topic_name: /dev/null
+      deadman_buttons: [5]
+      message_value:
+        data:
+          value: 0
