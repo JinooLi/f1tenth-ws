@@ -195,10 +195,10 @@ class JoyTeleopTopicCommand(JoyTeleopCommand):
         last_active = self.active
         self.update_active_from_buttons_and_axes(joy_state)
         if not self.active: 
-            # 기기가 멈추는 동작은 7번 버튼(start)에 바인딩해놓고 만약 7번 버튼 행동에 대해
-            # 이 run함수를 실행하게 된다면 다음과 같이 4번 5번 버튼에 입력이 없을 때 7번 버튼 동작을
+            # 기기가 멈추는 동작은 존재하지 않는 -1 번 버튼에 바인딩해놓고 만약 -1 번 버튼 행동에 대해
+            # 이 run함수를 실행하게 된다면 다음과 같이 4번 5번 버튼에 입력이 없을 때 -1 번 버튼 동작을
             # 시행하도록 하는 조건문.
-            if self.buttons == [7] and joy_state.buttons[4] == 0 and joy_state.buttons[5] == 0:
+            if self.buttons == [-1] and joy_state.buttons[4] == 0 and joy_state.buttons[5] == 0:
                 self.active = 1
             else : return
         if self.msg_value is not None and last_active == self.active:

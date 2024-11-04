@@ -12,7 +12,7 @@ joy_teleop:
       type: topic
       interface_type: ackermann_msgs/msg/AckermannDriveStamped
       topic_name: teleop
-      deadman_buttons: [7]
+      deadman_buttons: [-1]
       axis_mappings:
         drive-speed:
           axis: 1
